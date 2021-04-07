@@ -149,21 +149,26 @@ Use the scoreboard function below to do the following:
   "This game will require extra innings: Away 10 - Home 10"
 ]  
 */
-function scoreBoard(callback1, callback2, numInnings) {
-  let board = [];
-  let homeFinalScore = 0;
-  let awayFinalScore = 0;
-  for (let i = 1; i <= numInnings; i++) {
-    board.push(`Inning ${i}: ${callback1(callback2)}`);
-    homeFinalScore += homeScore;
-    awayFinalScore += awayScore;
+function scoreboard(callback, innings) {
+  let home = 0;
+  let away = 0;
+  for (let i = 1; i <= innings; i++) {
+    home = callback() + home;
+    away = callback() + away;
+    if (i === 1) {
+      console.log(`${i}st inning: ${home} - ${away}`);
+    } else if (i === 2) {
+      console.log(`${i}nd inning: ${home} - ${away}`);
+    } else if (i === 3) {
+      console.log(`${i}rd inning: ${home} - ${away}`);
+    } else {
+      console.log(`${i}th inning: ${home} - ${away}`);
+    }
   }
-  board.push(
-    `Final Score: Away Team: ${awayFinalScore} - Home Team: ${homeFinalScore}`
-  );
-  return board;
+  return `Final Score: Home : ${home} Away : ${away}`;
 }
-scoreBoard(getInningScore, inning, 9);
+
+scoreboard(getInningScore, inning, 9);
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo() {
