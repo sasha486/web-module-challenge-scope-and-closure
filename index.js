@@ -31,9 +31,14 @@ console.log(
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+
+      the variable count in counter1 is scoped inside the function. Count in counter2 is in the global scope. 
   
   2. Which of the two uses a closure? How can you tell?
-  
+
+    The first one uses a closure because it a function is nested to have access to the variable from the parent function. 
+
+
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
 */
@@ -153,8 +158,8 @@ function scoreboard(callback, callback, innings) {
   let home = 0;
   let away = 0;
   for (let i = 1; i <= innings; i++) {
-    home = callback() + home;
-    away = callback() + away;
+    home += callback();
+    away += callback();
 
     if (i === 1) {
       console.log(`inning ${i}: Away ${away} - Home ${home}`);
